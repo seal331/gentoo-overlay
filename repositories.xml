@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <repositories version="1.0">
   <repo quality="experimental" status="unofficial">
-    <name>seals-overlay</name>
+    <name>seal-overlay</name>
       <description lang="en">Seal's Gentoo overlay.</description>
         <homepage>https://github.com/seal331/gentoo-overlay</homepage>
         <owner type="person">
