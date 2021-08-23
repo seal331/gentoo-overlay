@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<repositories version="1.0">
+  <repo quality="experimental" status="unofficial">
+    <name>seals-overlay</name>
+      <description lang="en">Seal's Gentoo overlay.</description>
+        <homepage>https://github.com/seal331/gentoo-overlay</homepage>
+        <owner type="person">
+            <name>Seal Sealy</name>
+            <email>vladkinsk@mail.ru</email>
+        </owner>
+        <source type="git">git://github.com/seal331/gentoo-overlay.git</source>
+        <feed>https://github.com/seal331/gentoo-overlay/commits/master.atom</feed>
+  </repo>
+</repositories>

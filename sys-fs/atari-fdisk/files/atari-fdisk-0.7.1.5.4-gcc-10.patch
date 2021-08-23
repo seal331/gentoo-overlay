@@ -1,0 +1,99 @@
+Dirty fix to get this thingy to compile under GCC 10. Untested since I don't have the hardware.
+Index: atari-fdisk-0.7.1/atari-fdisk.c
+===================================================================
+--- atari-fdisk-0.7.1.orig/atari-fdisk.c
++++ atari-fdisk-0.7.1/atari-fdisk.c
+@@ -183,7 +183,11 @@ int n_global_options = fieldsize(global_
+ 
+ jmp_buf listingbuf;
+ 
+-
++enum {
++    xfmt_unknown,
++    xfmt_AHDI,
++    xfmt_ICD
++} xpart_fmt;                    /* which format used for >4 part.s */
+ 
+ /***************************** Prototypes *****************************/
+ 
+Index: atari-fdisk-0.7.1/fdisk.h
+===================================================================
+--- atari-fdisk-0.7.1.orig/fdisk.h
++++ atari-fdisk-0.7.1/fdisk.h
+@@ -86,12 +86,6 @@ struct systypes {
+     char *name;
+ };
+ 
+-enum {
+-    xfmt_unknown,
+-    xfmt_AHDI,
+-    xfmt_ICD
+-} xpart_fmt;			/* which format used for >4 part.s */
+-
+ #define MAX_PRIMARY_AHDI	4
+ #define MAX_PRIMARY_ICD		12
+ #define MAX_PRIMARY		(xpart_fmt == xfmt_ICD ?	\
+Index: atari-fdisk-0.7.1/menufuncs.c
+===================================================================
+--- atari-fdisk-0.7.1.orig/menufuncs.c
++++ atari-fdisk-0.7.1/menufuncs.c
+@@ -143,6 +143,11 @@ static char vcid[] __attribute__ ((unuse
+ #include "disk.h"
+ #include "util.h"
+ 
++extern enum {
++    xfmt_unknown,
++    xfmt_AHDI,
++    xfmt_ICD
++} xpart_fmt;                    /* which format used for >4 part.s */
+ 
+ void set_bootable( void )
+ {
+Index: atari-fdisk-0.7.1/partable.c
+===================================================================
+--- atari-fdisk-0.7.1.orig/partable.c
++++ atari-fdisk-0.7.1/partable.c
+@@ -60,6 +60,11 @@ static char vcid[] __attribute__ ((unuse
+ #include "partable.h"
+ #include "util.h"
+ 
++extern enum {
++    xfmt_unknown,
++    xfmt_AHDI,
++    xfmt_ICD
++} xpart_fmt;                    /* which format used for >4 part.s */
+ 
+ /* sector inside partition? */
+ int inside_part( PARTITION *p, unsigned long sec )
+Index: atari-fdisk-0.7.1/readpart.c
+===================================================================
+--- atari-fdisk-0.7.1.orig/readpart.c
++++ atari-fdisk-0.7.1/readpart.c
+@@ -78,6 +78,11 @@ static char vcid[] __attribute__ ((unuse
+ #include "input.h"
+ #include "util.h"
+ 
++extern enum {
++    xfmt_unknown,
++    xfmt_AHDI,
++    xfmt_ICD
++} xpart_fmt;                    /* which format used for >4 part.s */
+ 
+ /***************************** Prototypes *****************************/
+ 
+Index: atari-fdisk-0.7.1/writepart.c
+===================================================================
+--- atari-fdisk-0.7.1.orig/writepart.c
++++ atari-fdisk-0.7.1/writepart.c
+@@ -66,6 +66,11 @@ static char vcid[] __attribute__ ((unuse
+ #include "util.h"
+ #include "readpart.h"
+ 
++extern enum {
++    xfmt_unknown,
++    xfmt_AHDI,
++    xfmt_ICD
++} xpart_fmt;                    /* which format used for >4 part.s */
+ 
+ /* tell the kernel to reread the partition tables */
+ int reread_ioctl( int fd )
