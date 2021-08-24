@@ -19,4 +19,4 @@ layman -a seal331-gentoo
 
 ## Syncing the repository
 
-Easy, just execute ``layman -s seal331-gentoo``
+Easy, just execute ``layman -s seal331-gentoo``.
