@@ -21,7 +21,7 @@ BDEPEND=">=dev-util/cmake-3.10"
 
 SLOT="0"
 
-KEYWORDS="amd64"
+KEYWORDS="~amd64"
 
 RESTRICT="mirror"
 
